@@ -1,0 +1,37 @@
+type Todo {
+  _id: String!
+  title: String!
+  description: String!
+  status: String!
+  createdBy: User!
+}
+
+input CreateTodoInput {
+  title: String!
+  description: String!
+  userId: String!
+
+}
+
+input UpdateTodoInput {
+  id: String!
+  title: String
+  description: String
+  status: String
+}
+
+input GetTodoListInput {
+  page: Int = 1
+  limit: Int = 10
+}
+
+type Query {
+  getTodoList(getTodoListInput: GetTodoListInput!): [Todo]!
+  getTodo(id: String!): Todo
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+  removeTodo(id: String!): Todo
+}
